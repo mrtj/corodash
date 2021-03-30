@@ -23,7 +23,8 @@ localizations = {
         'Daily Positives': 'Daily positives',
         'Region': 'Region',
         'Language': 'Language',
-        'date': 'date'
+        'date': 'date',
+        'Updating...': 'Updating...'
     },
     'Italiano': {
         'R effective': 'R effettivo',
@@ -35,7 +36,8 @@ localizations = {
         'Daily Positives': 'Nuovi positivi',
         'Region': 'Regione',
         'Language': 'Lingua',
-        'date': 'data'
+        'date': 'data',
+        'Updating...': 'Aggiornamento...'
     }
 }
 
@@ -73,8 +75,8 @@ def region_df(dataset, region, resample=True):
         df = df.resample('D').last()
     return df['2020-06-01':]
     
-@st.cache
-def get_dataset(date=dt.date.today()):
+@st.cache(show_spinner=False, ttl=60*60*24)
+def get_dataset():
     return DataSet('dati-regioni/dpc-covid19-ita-regioni.csv')
 
 @st.cache
@@ -91,7 +93,7 @@ def get_si(shape=1.87, rate=0.28, N=300):
     SI = intervallo / sum(intervallo)
     return SI
 
-@st.cache
+@st.cache(show_spinner=False)
 def get_time_varying_r(
         dataset, 
         region, 
@@ -178,7 +180,7 @@ def r_effective_chart(time_varying_r, region, start=None, width=800, height=250)
     return chart
 
 def main():
-    st.set_page_config(page_title='Epyestim',layout='wide')
+    st.set_page_config(page_title='Epyestim', layout='wide')
     global selected_lang
     dataset = get_dataset()
     start = '2020-09-01'
@@ -191,7 +193,9 @@ def main():
     chart1 = cases_chart(cases, region, start=start)
     
     si = get_si()
-    time_varying_r = get_time_varying_r(dataset, region, si_distrb=si)
+    with st.spinner(get_text('Updating...')):
+        time_varying_r = get_time_varying_r(dataset, region, si_distrb=si)
+    
     chart2 = r_effective_chart(time_varying_r, region, start=start)
     
     chart = alt.vconcat(chart1, chart2).resolve_scale(x='shared')
