@@ -73,7 +73,7 @@ def region_df(dataset, region, resample=True):
         df = df.resample('D').last()
     return df['2020-06-01':]
     
-@st.cache(show_spinner=False, ttl=60*60*24)
+@st.cache(show_spinner=False, ttl=60*60*24, persist=True)
 def get_dataset():
     return DataSet('dati-regioni/dpc-covid19-ita-regioni.csv')
 
@@ -81,7 +81,7 @@ def get_dataset():
 def get_regions(dataset):
     return np.sort(dataset.df['denominazione_regione'].unique())
     
-@st.cache
+@st.cache()
 def get_si(shape=1.87, rate=0.28, N=300):
     # parametri dell'intervallo seriale stimati da dati di contact tracing lombardia
     ## massimo numero di giorni dell'intervallo seriale
@@ -91,7 +91,7 @@ def get_si(shape=1.87, rate=0.28, N=300):
     SI = intervallo / sum(intervallo)
     return SI
 
-@st.cache(show_spinner=False)
+@st.cache(show_spinner=False, persist=True)
 def get_time_varying_r(
         dataset, 
         region, 
