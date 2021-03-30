@@ -1,12 +1,10 @@
 import streamlit as st
-import datetime as dt
 
 import epyestim
 import epyestim.covid19 as covid19
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import altair as alt
 from scipy.stats import dgamma
 
