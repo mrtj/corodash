@@ -130,17 +130,11 @@ def hline(y, color=None, strokeDash=[]):
 def cases_chart(cases, region, start=None, width=800, height=250):
     d = cases if start is None else cases[start:]
     d = d.reset_index()
-    d['line_label'] = len(d) * [get_text('Daily Positives')]
     chart = alt.Chart(d) \
         .mark_line() \
         .encode(
             x=alt.X('data:T', title=''),
-            y=alt.Y('nuovi_positivi:Q', title=''),
-            color=alt.Color(
-                'line_label',
-                legend=alt.Legend(title=''),
-                scale=alt.Scale(range=[tableau10['blue']])
-            )
+            y=alt.Y('nuovi_positivi:Q', title='')
         ) \
         .properties(
             title={
@@ -157,30 +151,18 @@ def r_effective_chart(time_varying_r, region, start=None, width=800, height=250)
     d = time_varying_r if start is None else time_varying_r[start:]
     d = d.reset_index()
     d = d.rename(columns={'Q0.5': 'Q05', 'Q0.025': 'Q0025', 'Q0.975': 'Q0975'})
-    # hack for the legend
-    d['line_label'] = len(d) * [get_text('R effective')]
-    d['conf_label'] = len(d) * [get_text('95% confidence interval')]
     r_eff = alt.Chart(d) \
         .mark_line(color='red') \
         .encode(
             x=alt.X('index:T', title=''),
-            y=alt.Y('Q05:Q', title=''),
-            color=alt.Color(
-                'line_label',
-                legend=alt.Legend(title=''),
-                scale=alt.Scale(range=['red'])
-            )
+            y=alt.Y('Q05:Q', title='')
         )
     r_conf = alt.Chart(d) \
         .mark_area(color='red', opacity=0.25) \
         .encode(
             x=alt.X('index:T', title=''),
             y=alt.Y('Q0025:Q', title=''),
-            y2=alt.Y2('Q0975:Q', title=''),
-            opacity=alt.Opacity(
-                'conf_label', 
-                legend=alt.Legend(title='')
-            )
+            y2=alt.Y2('Q0975:Q', title='')
         )
     hline1 = hline(1, tableau10['blue'])
     hline2 = hline(1.25, tableau10['blue'], strokeDash=[4, 2])
@@ -207,18 +189,12 @@ def main():
     
     cases = get_cases(dataset, region)
     chart1 = cases_chart(cases, region, start=start)
-    # st.altair_chart(chart, use_container_width=True)
     
     si = get_si()
     time_varying_r = get_time_varying_r(dataset, region, si_distrb=si)
     chart2 = r_effective_chart(time_varying_r, region, start=start)
-    # st.altair_chart(chart, use_container_width=True)
     
-    chart = alt.vconcat(chart1, chart2).resolve_scale(x='shared') \
-        .configure_scale(
-            minOpacity=0.25, 
-            maxOpacity=0.25
-        )
+    chart = alt.vconcat(chart1, chart2).resolve_scale(x='shared')
     st.altair_chart(chart)
 
 if __name__ == '__main__':
