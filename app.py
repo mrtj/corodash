@@ -140,7 +140,7 @@ def cases_chart(cases, region, start=None, width=800, height=250):
                 'text': get_text('case_fig_title_1', region=region),
                 'subtitle': get_text('case_fig_title_2', date=cases.index[-1])
             },
-            width=width,
+            # width=width,
             height=height
         )
     return chart
@@ -171,7 +171,7 @@ def r_effective_chart(time_varying_r, region, start=None, width=800, height=250)
                 'text': get_text('r_fig_title_1', region=region),
                 'subtitle': get_text('r_fig_title_2', date=time_varying_r.index[-1])
             },
-            width=width,
+            # width=width,
             height=height
         )
     return chart
