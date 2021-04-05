@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import altair as alt
 from scipy.stats import dgamma
+from datetime import datetime
 
 from dataset import DataSet
 
@@ -66,7 +67,6 @@ def get_languages():
 
 # #### Data
 
-@st.cache
 def region_df(dataset, region, resample=True):
     df = dataset.df[dataset.df['denominazione_regione'] == region]
     if resample:
@@ -74,10 +74,9 @@ def region_df(dataset, region, resample=True):
     return df['2020-06-01':]
     
 @st.cache(show_spinner=False, ttl=60*60*24, persist=True)
-def get_dataset():
+def get_dataset(dummy=f'{datetime.now():%Y-%m-%d}'):
     return DataSet('dati-regioni/dpc-covid19-ita-regioni.csv')
 
-@st.cache
 def get_regions(dataset):
     return np.sort(dataset.df['denominazione_regione'].unique())
     
@@ -91,7 +90,7 @@ def get_si(shape=1.87, rate=0.28, N=300):
     SI = intervallo / sum(intervallo)
     return SI
 
-@st.cache(show_spinner=False, persist=True)
+@st.cache(show_spinner=False, ttl=60*60*24, persist=True)
 def get_time_varying_r(
         dataset, 
         region, 
@@ -99,7 +98,8 @@ def get_time_varying_r(
         smoothing_window=None, 
         r_window_size=None, 
         si_distrb = covid19.generate_standard_si_distribution(),
-        delay_distrb = covid19.generate_standard_infection_to_reporting_distribution()):
+        delay_distrb = covid19.generate_standard_infection_to_reporting_distribution(),
+        dummy=f'{datetime.now():%Y-%m-%d}'):
     df = region_df(dataset, region)
     kwargs = {}
     if smoothing_window:
@@ -114,7 +114,6 @@ def get_time_varying_r(
     time_varying_r = covid19.r_covid(series, **kwargs)
     return time_varying_r
 
-@st.cache
 def get_cases(dataset, region, column='nuovi_positivi', window=7):
     df = region_df(dataset, region)
     return df[column].rolling(window).mean().to_frame()
@@ -182,10 +181,14 @@ def main():
     global selected_lang
     dataset = get_dataset()
     start = '2020-09-01'
-    
+
+    st.sidebar.markdown(f'''
+        # Epyestim
+        Estimates of the time varying reproduction number for the COVID-10 epidemic curve in the regions of Italy.
+        ''')
     selected_lang = st.sidebar.selectbox('Language / Lingua', get_languages())
     region = st.sidebar.selectbox(get_text('Region'), get_regions(dataset))
-    st.title(f'Epyestim \u2014 {region}')
+    st.header(region)
     
     cases = get_cases(dataset, region)
     chart1 = cases_chart(cases, region, start=start)
