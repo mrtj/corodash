@@ -190,12 +190,15 @@ def main():
     global selected_lang
     dataset = get_dataset()
     start = '2020-09-01'
+    
+    intro_placeholder = st.sidebar.empty()
 
-    st.sidebar.markdown(f'''
+    selected_lang = st.sidebar.selectbox('Language / Lingua', get_languages())
+
+    intro_placeholder.markdown(f'''
         # {get_text('app_title')}
         {get_text('epyestim_intro')}
         ''')
-    selected_lang = st.sidebar.selectbox('Language / Lingua', get_languages())
     region = st.sidebar.selectbox(get_text('Region'), get_regions(dataset))
     st.header(region)
     
