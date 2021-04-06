@@ -1,0 +1,47 @@
+{
+    "English": {
+        "app_title": "CoroDash",
+        "app_intro": "Dashboard of COVID-19 outbreak and vaccination data in Italy",
+        
+        "R effective": "$R$-effective",
+        "r-eff_intro": "Estimates of the effective reproduction number of the COVID-19 epidemic in the Italian region of {region}.",
+        "r-eff_description": "The effective reproductive number ($R$) is the average number of secondary infected persons resulting from a infected person. If $R>1$, the number of infected persons will increase. If $R<1$, the number of infected persons will decrease. At $R=1$, the number of infected persons remains constant.",
+        
+        "95% confidence interval": "95% conf. interval",
+        "r_fig_title_1": "R effective in {region}",
+        "r_fig_title_2": "Last day of estimate: {date:%Y-%m-%d}",
+        "case_fig_title_1": "Daily new cases in {region}",
+        "case_fig_title_2": "Last day: {date:%Y-%m-%d}",
+        "Daily Positives": "Daily positives",
+        "Region": "Region",
+        "Language": "Language",
+        "date": "date",
+        "Updating...": "Updating...",
+        "page_menu_name": "Page",
+        "page_menu_r_eff": "R effective",
+        "page_menu_vaccinations": "Vaccinations"
+    },
+    "Italiano": {
+        "app_title": "CoroDash",
+        "app_intro": "Dashboard dei dati epidemici e vaccini COVID-19 in Italia",
+        
+        "R effective": "$R$ effettivo",
+        "r-eff_intro": "Stime del numero di riproduzione effettivo dell'epidemia di COVID-19 nella regione di {region}.",
+        "r-eff_description": "Il numero riproduttivo effettivo ($R$) è il numero medio di persone infette derivanti da una persona infetta. Se $R>1$, il numero di persone infette aumenterà. Se $R<1$, il numero di persone infette diminuirà. A $R=1$, il numero di persone infette rimane costante.",
+
+
+        "95% confidence interval": "intervallo di conf. al 95%",
+        "r_fig_title_1": "R effettivo in {region}",
+        "r_fig_title_2": "Ultima data stimata: {date:%Y-%m-%d}",
+        "case_fig_title_1": "Nuovi positivi in {region}",
+        "case_fig_title_2": "Ultima data: {date:%Y-%m-%d}",
+        "Daily Positives": "Nuovi positivi",
+        "Region": "Regione",
+        "Language": "Lingua",
+        "date": "data",
+        "Updating...": "Aggiornamento...",
+        "page_menu_name": "Pagina",
+        "page_menu_r_eff": "R effettivo",
+        "page_menu_vaccinations": "Vaccini"
+    }
+}
