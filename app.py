@@ -13,6 +13,7 @@ from dataset import DataSet
 
 localizations = {
     'English': {
+        'app_title': 'Epyestim',
         'R effective': 'R effective',
         '95% confidence interval': '95% conf. interval',
         'r_fig_title_1': 'R effective in {region}',
@@ -27,6 +28,7 @@ localizations = {
         'epyestim_intro': 'Estimates of the effective reproduction number of the COVID-19 epidemic in the regions of Italy.'
     },
     'Italiano': {
+        'app_title': 'Epyestim',
         'R effective': 'R effettivo',
         '95% confidence interval': 'intervallo di conf. al 95%',
         'r_fig_title_1': 'R effettivo in {region}',
@@ -190,8 +192,8 @@ def main():
     start = '2020-09-01'
 
     st.sidebar.markdown(f'''
-        # Epyestim
-        Estimates of the time varying reproduction number for the COVID-10 epidemic curve in the regions of Italy.
+        # {get_text('app_title')}
+        {get_text('epyestim_intro')}
         ''')
     selected_lang = st.sidebar.selectbox('Language / Lingua', get_languages())
     region = st.sidebar.selectbox(get_text('Region'), get_regions(dataset))
