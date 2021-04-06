@@ -23,7 +23,8 @@ localizations = {
         'Region': 'Region',
         'Language': 'Language',
         'date': 'date',
-        'Updating...': 'Updating...'
+        'Updating...': 'Updating...',
+        'epyestim_intro': 'Estimates of the effective reproduction number of the COVID-19 epidemic in the regions of Italy.'
     },
     'Italiano': {
         'R effective': 'R effettivo',
@@ -36,7 +37,8 @@ localizations = {
         'Region': 'Regione',
         'Language': 'Lingua',
         'date': 'data',
-        'Updating...': 'Aggiornamento...'
+        'Updating...': 'Aggiornamento...',
+        'epyestim_intro': 'Stime del numero di riproduzione effettive dell\'epidemia di COVID-19 nelle regioni italiane.'
     }
 }
 
@@ -140,7 +142,7 @@ def cases_chart(cases, region, start=None, width=800, height=250):
                 'text': get_text('case_fig_title_1', region=region),
                 'subtitle': get_text('case_fig_title_2', date=cases.index[-1])
             },
-            # width=width,
+            width='container',
             height=height
         )
     return chart
@@ -171,13 +173,20 @@ def r_effective_chart(time_varying_r, region, start=None, width=800, height=250)
                 'text': get_text('r_fig_title_1', region=region),
                 'subtitle': get_text('r_fig_title_2', date=time_varying_r.index[-1])
             },
-            # width=width,
+            width='container',
             height=height
         )
     return chart
 
 def main():
     st.set_page_config(page_title='Epyestim', layout='wide')
+    st.markdown('''<style>
+    div.vega-embed {
+        width: 100%;
+    }
+    </style>
+    ''',
+    unsafe_allow_html=True)
     global selected_lang
     dataset = get_dataset()
     start = '2020-09-01'
@@ -199,8 +208,10 @@ def main():
     
     chart2 = r_effective_chart(time_varying_r, region, start=start)
     
-    chart = alt.vconcat(chart1, chart2).resolve_scale(x='shared')
-    st.altair_chart(chart)
+    chart = alt.vconcat(chart1, chart2) \
+        .resolve_scale(x='shared') 
+
+    st.altair_chart(chart, use_container_width=True)
 
 if __name__ == '__main__':
     main()
