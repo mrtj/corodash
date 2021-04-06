@@ -57,13 +57,11 @@ tableau10 = {
 
 selected_lang = None
 
-@st.cache
 def get_text(key, **kwargs):
     global selected_lang
     res = localizations[selected_lang].get(key, key)
     return res.format(**kwargs)
 
-@st.cache
 def get_languages():
     return list(localizations.keys())
 
