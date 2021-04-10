@@ -127,9 +127,11 @@ def r_effective_page(loc):
     region = st.sidebar.selectbox(loc.get_text('Region'), get_regions(dataset))
     st.markdown(f'''
     ## {loc.get_text('R effective')} \u2013 {region}
-    
-    {loc.get_text('r-eff_description')}
     ''')
+    if st.checkbox(loc.get_text('show_info')):
+        st.markdown(f'''
+        {loc.get_text('r-eff_description')}
+        ''')
 
     start = '2020-09-01'
     cases = get_cases(dataset, region)
