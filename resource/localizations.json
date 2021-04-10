@@ -19,7 +19,8 @@
         "Updating...": "Updating...",
         "page_menu_name": "Page",
         "page_menu_r_eff": "R effective",
-        "page_menu_vaccinations": "Vaccinations"
+        "page_menu_vaccinations": "Vaccinations",
+        "show_info": "Show info"
     },
     "Italiano": {
         "app_title": "CoroDash",
@@ -28,8 +29,6 @@
         "R effective": "$R$ effettivo",
         "r-eff_intro": "Stime del numero di riproduzione effettivo dell'epidemia di COVID-19 nella regione di {region}.",
         "r-eff_description": "Il numero riproduttivo effettivo ($R$) è il numero medio di persone infette derivanti da una persona infetta. Se $R>1$, il numero di persone infette aumenterà. Se $R<1$, il numero di persone infette diminuirà. A $R=1$, il numero di persone infette rimane costante.",
-
-
         "95% confidence interval": "intervallo di conf. al 95%",
         "r_fig_title_1": "R effettivo in {region}",
         "r_fig_title_2": "Ultima data stimata: {date:%Y-%m-%d}",
@@ -42,6 +41,7 @@
         "Updating...": "Aggiornamento...",
         "page_menu_name": "Pagina",
         "page_menu_r_eff": "R effettivo",
-        "page_menu_vaccinations": "Vaccini"
+        "page_menu_vaccinations": "Vaccini",
+        "show_info": "Informazione"
     }
 }

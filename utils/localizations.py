@@ -2,7 +2,7 @@ import json
 
 import streamlit as st
 
-@st.cache()
+# @st.cache()
 def _get_localizations():
     with open('resource/localizations.json') as f:
         localizations = json.load(f)
