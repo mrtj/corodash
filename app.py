@@ -8,7 +8,7 @@ def main():
     st.markdown(
         '''<style>
             div.vega-embed {
-                width: 100%;
+                width: 95%;
             }
             </style>
         ''',
