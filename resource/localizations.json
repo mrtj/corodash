@@ -21,8 +21,15 @@
         "page_menu_r_eff": "R effective",
         "page_menu_vaccinations": "Vaccinations",
         "show_info": "Show info",
-        "vac_fig_title_1": "Daily vaccines in {region}",
-        "last_day_title": "Last day: {date:%d-%m-%Y}"
+        "vac_fig_title_1": "Daily vaccinations",
+        "total_vac_fig_title_1": "Total vaccinations",
+        "last_day_title": "Last day: {date:%d-%m-%Y}",
+        "first dose": "first dose",
+        "second dose": "second dose",
+        "both doses": "both doses",
+        "per population": "In the percentage of the population",
+        "total": "total",
+        "show data": "Show data"
     },
     "Italiano": {
         "app_title": "CoroDash",
@@ -45,7 +52,14 @@
         "page_menu_r_eff": "R effettivo",
         "page_menu_vaccinations": "Vaccini",
         "show_info": "Informazione",
-        "vac_fig_title_1": "Vaccini giornalieri in {region}",
-        "last_day_title": "Ultima data: {date:%d/%m/%Y}"
+        "vac_fig_title_1": "Vaccini giornalieri",
+        "total_vac_fig_title_1": "Vaccini totali",
+        "last_day_title": "Ultima data: {date:%d/%m/%Y}",
+        "first dose": "prima dose",
+        "second dose": "seconda dose",
+        "both doses": "entrambi dosi",
+        "per population": "Ponderato alla popolazione",
+        "total": "totale",
+        "show data": "Visualizza dati"
     }
 }
