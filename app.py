@@ -2,6 +2,7 @@ import streamlit as st
 
 from utils.localizations import Localizations
 from pages.r_eff import r_effective_page
+from pages.vaccinations import vaccinations_page
 
 def main():
     st.set_page_config(page_title='CoroDash', layout='wide')
@@ -30,14 +31,14 @@ def main():
         loc.get_text('page_menu_name'), 
         [
             loc.get_text('page_menu_r_eff'), 
-            # loc.get_text('page_menu_vaccinations')
+            loc.get_text('page_menu_vaccinations')
         ]
     )
 
     if selected_page == loc.get_text('page_menu_r_eff'):
         r_effective_page(loc)
     elif selected_page == loc.get_text('page_menu_vaccinations'):
-        pass
+        vaccinations_page(loc)
 
 if __name__ == '__main__':
     main()
