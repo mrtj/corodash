@@ -152,7 +152,6 @@ def get_total_vac_table(data, loc, per_population):
     data.index = data.index.strftime('%Y-%m-%d')
     return data.style.format(table_format)
 
-
 def vaccinations_page(loc):
     dataset = get_dataset()
     region = st.sidebar.selectbox(loc.get_text('Region'), get_regions(dataset))
@@ -188,3 +187,5 @@ def vaccinations_page(loc):
         ''')
         total_vac_table = get_total_vac_table(total_vac_data, loc, per_population=bool(population))
         col2.write(total_vac_table)
+
+    st.markdown(f'{loc.get_text("data source")}: {dataset.repo_url}')

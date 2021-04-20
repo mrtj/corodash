@@ -24,6 +24,7 @@ class DataSet:
         self.path = path
         self.commit_url = f'https://api.github.com/repos/{self.repo}/commits?path={self.path}&page=1&per_page=1'
         self.data_url = f'https://raw.githubusercontent.com/{self.repo}/master/{self.path}'
+        self.repo_url = f'https://github.com/{self.repo}'
         self.resample = resample
         self.date_cols = date_cols
         self.index_cols = index_cols

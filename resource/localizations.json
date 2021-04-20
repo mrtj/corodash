@@ -29,7 +29,8 @@
         "both doses": "both doses",
         "per population": "In the percentage of the population",
         "total": "total",
-        "show data": "Show data"
+        "show data": "Show data",
+        "data source": "Data source"
     },
     "Italiano": {
         "app_title": "CoroDash",
@@ -60,6 +61,7 @@
         "both doses": "entrambi dosi",
         "per population": "Ponderato alla popolazione",
         "total": "totale",
-        "show data": "Visualizza dati"
+        "show data": "Visualizza dati",
+        "data source": "Sorgente dei dati"
     }
 }

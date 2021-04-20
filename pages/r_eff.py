@@ -143,3 +143,4 @@ def r_effective_page(loc):
     chart = alt.vconcat(subchart1, subchart2) \
         .resolve_scale(x='shared') 
     st.altair_chart(chart, use_container_width=True)
+    st.markdown(f'{loc.get_text("data source")}: {dataset.repo_url}')
