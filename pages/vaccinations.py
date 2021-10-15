@@ -174,7 +174,7 @@ def vaccinations_page(loc):
     st.altair_chart(chart)
 
     if st.checkbox(loc.get_text('show data')):
-        col1, col2 = st.beta_columns(2)
+        col1, col2 = st.columns(2)
 
         col1.markdown(f'''
         **{loc.get_text('vac_fig_title_1', region=region)}**
