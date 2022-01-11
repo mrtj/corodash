@@ -19,7 +19,6 @@ def region_df(dataset, region, resample=True):
         df = df.resample('D').last()
     return df['2020-06-01':]
     
-@st.cache(show_spinner=False, ttl=60*60*24)
 def get_dataset(dummy=f'{datetime.now():%Y-%m-%d}'):
     return DataSet('dati-regioni/dpc-covid19-ita-regioni.csv')
 
@@ -36,7 +35,6 @@ def get_si(shape=1.87, rate=0.28, N=300):
     SI = intervallo / sum(intervallo)
     return SI
 
-@st.cache(show_spinner=False, ttl=60*60*24)
 def get_time_varying_r(
         dataset, 
         region, 
