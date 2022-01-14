@@ -5,4 +5,3 @@ altair
 epyestim
 python_dateutil
 streamlit
-extra-streamlit-components
