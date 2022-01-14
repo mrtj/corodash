@@ -152,9 +152,11 @@ def get_total_vac_table(data, loc, per_population):
     data.index = data.index.strftime('%Y-%m-%d')
     return data.style.format(table_format)
 
-def vaccinations_page(loc):
+def vaccinations_page(loc, default_region='Lombardia'):
     dataset = get_dataset()
-    region = st.sidebar.selectbox(loc.get_text('Region'), get_regions(dataset))
+    regions = get_regions(dataset)
+    default_index = regions.index(default_region) if default_region in regions else 0
+    region = st.sidebar.selectbox(loc.get_text('Region'), regions, index=default_index)
     st.markdown(f'''
     ## {loc.get_text('page_menu_vaccinations')} \u2013 {region}
     ''')
