@@ -154,7 +154,7 @@ def get_total_vac_table(data, loc, per_population):
 
 def vaccinations_page(loc, default_region='Lombardia'):
     dataset = get_dataset()
-    regions = get_regions(dataset)
+    regions = list(get_regions(dataset))
     default_index = regions.index(default_region) if default_region in regions else 0
     region = st.sidebar.selectbox(loc.get_text('Region'), regions, index=default_index)
     st.markdown(f'''
