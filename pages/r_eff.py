@@ -120,27 +120,22 @@ def r_effective_chart(time_varying_r, region, loc, start=None, height=250):
         )
     return chart
 
-def get_region(loc, dataset):
+def get_region(loc, dataset, storage):
     regions = list(get_regions(dataset))
-    region = st.session_state['region'] if 'region' in st.session_state else None
-    st.write('Before creating selectbox')
-    st.write(st.session_state)
+    region = storage['region']
     idx = regions.index(region) if region in regions else 0
     region = st.sidebar.selectbox(
         loc.get_text('Region'), 
         regions, 
         index=idx,
         key='region',
+        on_change=lambda: storage.set('region', st.session_state['region'])
     )
-    st.write('After creating selectbox')
-    st.write(st.session_state)
     return region
 
-def r_effective_page(loc, default_region='Lombardia'):
-    st.write(st.session_state)
-    st.session_state['foo'] = 'bar'
+def r_effective_page(loc, storage):
     dataset = get_dataset()
-    region = get_region(loc, dataset)
+    region = get_region(loc, dataset, storage)
     st.markdown(f'''
     ## {loc.get_text('R effective')} \u2013 {region}
     ''')
