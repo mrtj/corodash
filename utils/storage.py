@@ -4,7 +4,8 @@ class Storage:
     
     def get(self, key):
         params = st.experimental_get_query_params()
-        return params.get(key)[0]
+        val = params.get(key)
+        return val[0] if val is not None and len(val) > 0 else None
 
     def set(self, key, value, expire_after=None):
         st.experimental_set_query_params(**{key:value})
