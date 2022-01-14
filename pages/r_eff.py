@@ -122,7 +122,7 @@ def r_effective_chart(time_varying_r, region, loc, start=None, height=250):
 
 def r_effective_page(loc, default_region='Lombardia'):
     dataset = get_dataset()
-    regions = get_regions(dataset)
+    regions = list(get_regions(dataset))
     default_index = regions.index(default_region) if default_region in regions else 0
     region = st.sidebar.selectbox(loc.get_text('Region'), regions, index=default_index)
     st.markdown(f'''
