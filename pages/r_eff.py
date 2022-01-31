@@ -145,7 +145,7 @@ def r_effective_page(loc, storage):
         ''')
 
     start = '2020-09-01'
-    cases = get_cases(dataset, region, window=1)
+    cases = get_cases(dataset, region, window=7)
     subchart1 = cases_chart(cases, region, loc, start=start)
     si = get_si()
     with st.spinner(loc.get_text('Updating...')):
