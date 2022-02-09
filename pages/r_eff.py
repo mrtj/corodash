@@ -17,7 +17,7 @@ def region_df(dataset, region, resample=True):
     df = dataset.df[dataset.df['denominazione_regione'] == region]
     if resample:
         df = df.resample('D').last()
-    return df['2020-06-01':]
+    return df['2021-10-01':]
     
 def get_dataset(dummy=f'{datetime.now():%Y-%m-%d}'):
     return DataSet('dati-regioni/dpc-covid19-ita-regioni.csv')
